@@ -15,14 +15,14 @@ VERSION_TABLE_ENTRY gVersionEntries[255] = {
     {
         // YOGA 11 test, Tegra 3, needs firmware fix-up
         // gST string "VenusTZ EFI Sep 28 2012 04:37:26"
-        L"VenusTZ EFI Sep 28 2012 04:37:26",
+        L"Venus EFI Dec  5 2012 23:09:45",
         Yoga_11_Exploit,
         Tegra3ConsoleOutputFixup,
     },
     {
         // VivoTab test, Tegra 3, needs firmware fix-up
         // gST string "VenusTZ EFI Sep 28 2012 04:37:26"
-        L"TF600TTZ EFI Aug 03 2013 12:08:02",
+        L"ASUS UEFI Jul 24 2013 18:23:22",
         VivoTab_Exploit,
         Tegra3ConsoleOutputFixup,
     },
