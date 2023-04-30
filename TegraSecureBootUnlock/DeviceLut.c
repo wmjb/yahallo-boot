@@ -19,6 +19,13 @@ VERSION_TABLE_ENTRY gVersionEntries[255] = {
         Yoga_11_Exploit,
         Tegra3ConsoleOutputFixup,
     },
+        {
+        // YOGA 11 test, Tegra 3, needs firmware fix-up
+        // gST string "VenusTZ EFI Sep 28 2012 04:37:26"
+        L"Venus EFI Dec 5 2012 23:09:45",
+        Yoga_11_Exploit,
+        Tegra3ConsoleOutputFixup,
+    },
     {
         // VivoTab test, Tegra 3, needs firmware fix-up
         // gST string "VenusTZ EFI Sep 28 2012 04:37:26"
