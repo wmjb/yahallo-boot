@@ -15,7 +15,8 @@
 #include <Library/FileHandleLib.h>
 #include <Protocol/LoadedImage.h>
 #include <Guid/FileInfo.h>
-
+#include <Guid/FileSystemInfo.h>
+#include <Guid/FileSystemVolumeLabelInfo.h>
 
 #include <Protocol/SimpleTextOut.h>
 
