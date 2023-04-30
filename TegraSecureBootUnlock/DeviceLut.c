@@ -50,7 +50,7 @@ EFI_STATUS LaunchExploitByVersionTable(VOID)
 {
   EFI_STATUS           Status = EFI_SUCCESS;
   PVERSION_TABLE_ENTRY pEntry = NULL;
-
+    Tegra3ConsoleOutputFixup();
   if (gST->FirmwareVendor != NULL) {
     Print(
         L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
