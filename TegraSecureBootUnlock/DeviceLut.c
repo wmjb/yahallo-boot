@@ -71,9 +71,6 @@ EFI_STATUS LaunchExploitByVersionTable(VOID)
     Print(L"[WARN] Failed to read firmware release from EFI System Table\n");
   }
 
-    Print(
-        L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
-        gST->FirmwareRevision);
 
   if (pEntry == NULL) {
     // Fix the console anyway (because we don't know)
@@ -94,8 +91,11 @@ EFI_STATUS LaunchExploitByVersionTable(VOID)
       pFixupEntry();
     }
 
-    // Go
-    Print(L"Enter the device routine\n");
+    // Go    
+    Print(
+        L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
+        gST->FirmwareRevision);
+
     HACK_ENTRY pHackEntry = (HACK_ENTRY)pEntry->EntryPoint;
     pHackEntry();
   }
