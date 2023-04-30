@@ -52,7 +52,11 @@
 [Guids]
   gEfiGlobalVariableGuid                        ## CONSUMES
   gEfiSmbiosTableGuid                           ## CONSUMES
+  gEfiFileInfoGuid                              ## CONSUMES
 
 [Protocols]
   gEfiSimpleTextOutProtocolGuid                 ## CONSUMES
+  gEfiDevicePathProtocolGuid                    ## CONSUMES
+  gEfiGraphicsOutputProtocolGuid                ## CONSUMES
+  gEfiSimpleFileSystemProtocolGuid              ## CONSUMES
   gEfiDevicePathProtocolGuid                    ## CONSUMES
