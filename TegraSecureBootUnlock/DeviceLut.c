@@ -71,6 +71,10 @@ EFI_STATUS LaunchExploitByVersionTable(VOID)
     Print(L"[WARN] Failed to read firmware release from EFI System Table\n");
   }
 
+    Print(
+        L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
+        gST->FirmwareRevision);
+
   if (pEntry == NULL) {
     // Fix the console anyway (because we don't know)
     Tegra3ConsoleOutputFixup();
