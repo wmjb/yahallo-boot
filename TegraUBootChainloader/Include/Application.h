@@ -27,6 +27,7 @@ typedef UINT32 uint32_t;
 typedef UINT64 uint64_t;
 
 VOID PerformNvTegra3Exploit(VOID);
+VOID PerformNvTegra4Exploit(VOID);
 
 UINT32
 ArmCallSmcHelper(UINT32 R0, UINT32 R1, UINT32 R2, UINT32 R3);
