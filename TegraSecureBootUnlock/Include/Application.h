@@ -12,6 +12,10 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/PrintLib.h>
 #include <Library/UefiLib.h>
+#include <Library/FileHandleLib.h>
+#include <Protocol/LoadedImage.h>
+#include <Guid/FileInfo.h>
+
 
 #include <Protocol/SimpleTextOut.h>
 
