@@ -13,6 +13,7 @@
 #include <Library/PrintLib.h>
 #include <Library/UefiLib.h>
 #include <Library/FileHandleLib.h>
+#include <Library/CacheMaintenanceLib.h>
 #include <Protocol/LoadedImage.h>
 #include <Guid/FileInfo.h>
 #include <Guid/FileSystemInfo.h>
