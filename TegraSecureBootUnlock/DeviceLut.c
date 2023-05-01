@@ -88,6 +88,7 @@ EFI_STATUS LaunchExploitByVersionTable(VOID)
     Print(
         L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
         gST->FirmwareRevision);
+      tegra3dumpfirmware();
     Status = EFI_NOT_FOUND;
     goto exit;
   }
