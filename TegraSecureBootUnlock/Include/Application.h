@@ -43,6 +43,7 @@ VOID       FinalizeApp(VOID);
 VOID       Tegra3ConsoleOutputFixup(VOID);
 VOID       CortexA15CachePrime(VOID);
 EFI_STATUS LaunchExploitByVersionTable(VOID);
+EFI_STATUS loadPayloadIntoMemory(EFI_PHYSICAL_ADDRESS memoryAddress, short unsigned int fileName[], size_t* fileSize);
 
 void *memmem(const void *h0, size_t k, const void *n0, size_t l);
 #define memchr(buf, ch, count) ScanMem8(buf, (UINTN)(count), (UINT8)ch)
