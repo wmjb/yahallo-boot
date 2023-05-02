@@ -58,56 +58,72 @@ EFI_STATUS LaunchExploitByVersionTable(VOID)
   EFI_STATUS           Status = EFI_SUCCESS;
   PVERSION_TABLE_ENTRY pEntry = NULL;
     Tegra3ConsoleOutputFixup();
+    
   if (gST->FirmwareVendor != NULL) {
     Print(
         L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
         gST->FirmwareRevision);
-    Print(L"Matching device\n");
+;
 
-    PVERSION_TABLE_ENTRY pLut = (PVERSION_TABLE_ENTRY)&gVersionEntries;
+  	Print(L"Loading device.inf into memory\n");
+	size_t fileSize1 = 0;
+	Status = loadPayloadIntoMemory((EFI_PHYSICAL_ADDRESS)0x83000000, L"\\device.inf", &fileSize1);
+	if (Status = EFI_SUCCESS)
+	{
+        //do the thing with the device.inf so it's used as a lut
 
-    do {
-      if (StrStr(gST->FirmwareVendor, pLut->FirmwareRelease) != NULL) {
-        pEntry = pLut;
-        break;
+
+	}
+
+    //fall back to built in lut
+    else
+    {
+        Print(L"Matching device\n")
+        PVERSION_TABLE_ENTRY pLut = (PVERSION_TABLE_ENTRY)&gVersionEntries;
+
+        do {
+        if (StrStr(gST->FirmwareVendor, pLut->FirmwareRelease) != NULL) {
+            pEntry = pLut;
+          break;
+          }
+          pLut++;
+        } while (pLut->FirmwareRelease != NULL);
       }
-      pLut++;
-    } while (pLut->FirmwareRelease != NULL);
-  }
-  else {
-    Print(L"[WARN] Failed to read firmware release from EFI System Table\n");
-  }
+      else {
+        Print(L"[WARN] Failed to read firmware release from EFI System Table\n");
+      }
 
 
-  if (pEntry == NULL) {
+   if (pEntry == NULL) {
     // Fix the console anyway (because we don't know)
-    Tegra3ConsoleOutputFixup();
+    //Tegra3ConsoleOutputFixup(); not needed as done anyway above
     Print(L"Yahallo - Tegra 3/4 Secure Boot Unlock Utility\n");
     Print(L"[ERROR] Failed to find the device. It is probably not supported "
           L"yet\n");
-    Print(
-        L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
-        gST->FirmwareRevision);
-      tegra3dumpfirmware();
-    Status = EFI_NOT_FOUND;
-    goto exit;
-  }
-  else {
-    // Run pre-fix up if exists
-    if (pEntry->PreEntryFixup != NULL) {
-      HACK_ENTRY pFixupEntry = (HACK_ENTRY)pEntry->PreEntryFixup;
-      pFixupEntry();
+        Print(
+            L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
+            gST->FirmwareRevision);
+         // tegra3dumpfirmware(); //disabled as increases file size
+        Status = EFI_NOT_FOUND;
+        goto exit;
+      }
+         else {
+        // Run pre-fix up if exists
+        if (pEntry->PreEntryFixup != NULL) {
+          HACK_ENTRY pFixupEntry = (HACK_ENTRY)pEntry->PreEntryFixup;
+          pFixupEntry();
+        }
+
+            // Go    
+        Print(
+            L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
+            gST->FirmwareRevision);
+
+        HACK_ENTRY pHackEntry = (HACK_ENTRY)pEntry->EntryPoint;
+        pHackEntry();
+      }
+
+    exit:
+      return Status;
     }
-
-    // Go    
-    Print(
-        L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
-        gST->FirmwareRevision);
-
-    HACK_ENTRY pHackEntry = (HACK_ENTRY)pEntry->EntryPoint;
-    pHackEntry();
-  }
-
-exit:
-  return Status;
 }
