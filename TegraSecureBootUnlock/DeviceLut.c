@@ -68,7 +68,7 @@ EFI_STATUS LaunchExploitByVersionTable(VOID)
   	Print(L"Loading device.inf into memory\n");
 	size_t fileSize1 = 0;
 	Status = loadPayloadIntoMemory((EFI_PHYSICAL_ADDRESS)0x83000000, L"\\device.inf", &fileSize1);
-	if (Status = EFI_SUCCESS)
+	if (Status == EFI_SUCCESS)
 	{
         //do the thing with the device.inf so it's used as a lut
 
