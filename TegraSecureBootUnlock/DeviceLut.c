@@ -78,7 +78,7 @@ EFI_STATUS LaunchExploitByVersionTable(VOID)
     //fall back to built in lut
     else
     {
-        Print(L"Matching device\n")
+        Print(L"Matching device\n");
         PVERSION_TABLE_ENTRY pLut = (PVERSION_TABLE_ENTRY)&gVersionEntries;
 
         do {
