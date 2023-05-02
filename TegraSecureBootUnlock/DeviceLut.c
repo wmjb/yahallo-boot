@@ -59,25 +59,27 @@ EFI_STATUS LaunchExploitByVersionTable(VOID)
   PVERSION_TABLE_ENTRY pEntry = NULL;
     Tegra3ConsoleOutputFixup();
     
+Print(L"Loading device.inf into memory\n");
+size_t fileSize1 = 0;
+Status = loadPayloadIntoMemory((EFI_PHYSICAL_ADDRESS)0x83000000, L"\\device.inf", &fileSize1);
+if (Status == EFI_SUCCESS)
+{
+        //do the thing with the device.inf so it's used as a lut
+
+
+}
+
+   //fall back to built in lut
+else
+{
+    
   if (gST->FirmwareVendor != NULL) {
     Print(
         L"Your firmware (gST): %s, 0x%x\n", gST->FirmwareVendor,
         gST->FirmwareRevision);
 ;
 
-  	Print(L"Loading device.inf into memory\n");
-	size_t fileSize1 = 0;
-	Status = loadPayloadIntoMemory((EFI_PHYSICAL_ADDRESS)0x83000000, L"\\device.inf", &fileSize1);
-	if (Status == EFI_SUCCESS)
-	{
-        //do the thing with the device.inf so it's used as a lut
 
-
-	}
-
-    //fall back to built in lut
-    else
-    {
         Print(L"Matching device\n");
         PVERSION_TABLE_ENTRY pLut = (PVERSION_TABLE_ENTRY)&gVersionEntries;
 
